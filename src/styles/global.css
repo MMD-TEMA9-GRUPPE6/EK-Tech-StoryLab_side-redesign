@@ -178,9 +178,7 @@ h4 {
   text-decoration: underline;
 }
 
-/* ================= HERO =================
-   Circle (text) + photo with a thick maroon border.
-   The photo overlaps the circle with a negative margin → reads as one blob. */
+/* ================= HERO =================*/
 .hero {
   display: grid;
   grid-template-columns: 1fr 1.2fr;
@@ -471,7 +469,7 @@ details[open] .panel-toggle::before {
   height: 20px;
 }
 
-/* Mirrored card: same grid, items in reverse order */
+/* Mirrored card: modsat rækkefølge grid */
 .contact-right {
   justify-self: end;
   grid-template-columns: auto 1fr 180px;

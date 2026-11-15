@@ -1,0 +1,15 @@
+---
+const { day, month, title, time, image } = Astro.props;
+---
+<div class="event-card">
+  <div class="event-date">
+    <p class="event-day">{day}</p>
+    <p class="small muted">{month}</p>
+  </div>
+  <div class="stack-small">
+    <h3>{title}</h3>
+    <p class="small muted">{time} · Tech &amp; Story Lab</p>
+  </div>
+  <img class="event-photo" src={image} alt="" />
+  <a class="btn btn-outline btn-small" href="#">Tilmeld</a>
+</div>

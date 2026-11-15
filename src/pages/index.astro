@@ -1,0 +1,117 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Panel from "../components/Panel.astro";
+import StudioCard from "../components/StudioCard.astro";
+import EquipmentCard from "../components/EquipmentCard.astro";
+import EventCard from "../components/EventCard.astro";
+import ContactCard from "../components/ContactCard.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+---
+<Layout>
+
+  <!-- HERO -->
+  <section class="hero container">
+    <div class="hero-blob">
+      <h1 class="hero-title">Tech &amp;<br />Story Lab</h1>
+      <p class="hero-text">Tech &amp; Story Lab er et lab med fokus på ny teknologi for EK's studerende, undervisere og øvrige ansatte.</p>
+      <div class="button-row">
+        <a class="btn btn-pink" href="#studios">Book et studie</a>
+        <a class="link" href="#udstyr">Se udstyr →</a>
+      </div>
+    </div>
+    <img class="hero-photo" src="/images/hero/hero-photo.png" alt="Studerende fotograferer i studiet" />
+    <img class="hero-mascot" src="/images/illustrations/mascot.png" alt="" />
+  </section>
+
+  <!-- QUICK LINKS -->
+  <section class="quick">
+    <div class="quick-grid container">
+      <a class="tile theme-studios" href="#studios">
+        <p class="tile-title">Book et studie</p>
+        <span class="tile-arrow">→</span>
+        <p class="tile-text small muted">Se ledige tider</p>
+      </a>
+      <a class="tile theme-equipment" href="#udstyr">
+        <p class="tile-title">Lån udstyr</p>
+        <span class="tile-arrow">→</span>
+        <p class="tile-text small muted">Kamera, lyd, lys</p>
+      </a>
+      <a class="tile theme-events" href="#events">
+        <p class="tile-title">Find et event</p>
+        <span class="tile-arrow">→</span>
+        <p class="tile-text small muted">Workshops &amp; talks</p>
+      </a>
+    </div>
+  </section>
+
+  <!-- STUDIOS -->
+  <Panel id="studios" title="Studios" color="studios" illustration="/images/illustrations/studios.svg">
+    <div class="studio-grid">
+      <StudioCard title="Podcast" image="/images/studios/podcast.png" link="/studier/podcast" />
+      <StudioCard title="VR" image="/images/placeholder.svg" link="/studier/vr" />
+      <StudioCard title="Eye Tracking" image="/images/placeholder.svg" link="/studier/eye-tracking" />
+    </div>
+  </Panel>
+
+  <!-- UDSTYR -->
+  <Panel id="udstyr" title="Udstyr" color="equipment" illustration="/images/illustrations/udstyr.png">
+    <div class="equipment">
+      <div class="stack">
+        <p class="eyebrow">Udstyr</p>
+        <h3 class="equipment-heading">Lån det, du skal bruge. Aflever det, når du er færdig.</h3>
+        <p class="small">Book online og hent i laben. Ved du ikke hvad du skal bruge, så kom forbi og spørg.</p>
+        <div class="button-row">
+          <a class="btn btn-outline btn-small" href="/udstyr">Se alt udstyr</a>
+          <a class="btn btn-maroon btn-small" href="/udstyr">Book udstyr</a>
+        </div>
+      </div>
+      <div class="equipment-shelf">
+        <EquipmentCard name="Filmkamera" image="/images/udstyr/filmkamera.png" available={3} />
+        <EquipmentCard name="Mikrofon-kit" image="/images/udstyr/mikrofon.png" available={5} />
+        <EquipmentCard name="Lyspakke" image="/images/udstyr/lyspakke.png" available={0} />
+        <EquipmentCard name="Gimbal" image="/images/udstyr/gimbal.png" available={2} />
+      </div>
+    </div>
+  </Panel>
+
+  <!-- EVENTS -->
+  <Panel id="events" title="Events" color="events" illustration="/images/illustrations/events.svg">
+    <div class="stack">
+      <EventCard day="12" month="NOV" title="Workshop: Podcast fra idé til upload" time="14:00–16:00" image="/images/studios/podcast.png" />
+      <EventCard day="19" month="NOV" title="Talk: Storytelling med AR" time="14:00–16:00" image="/images/events/ar.png" />
+      <EventCard day="03" month="DEC" title="Åbent studie: Greenscreen" time="14:00–16:00" image="/images/events/greenscreen.png" />
+      <a class="link" href="/events">Se alle events →</a>
+    </div>
+  </Panel>
+
+  <!-- KONTAKT -->
+  <section class="section container">
+    <h2 class="contacts-heading">Kontakt os</h2>
+    <div class="contacts-list">
+      <ContactCard slug="frederick" name="Frederick Lehmann Rosling" role="Lab-manager" email="frfr@ek.dk" phone="46 46 04 42" color="pink" side="left" />
+      <ContactCard slug="mikki" name="Mikki Simonsen" role="Lab-assistent" email="misi@ek.dk" phone="46 46 04 42" color="mauve" side="right" />
+      <ContactCard slug="kristoffer" name="Kristoffer Hygum Nielsen" role="Lab-assistent" email="TODO@ek.dk" phone="46 46 04 42" color="maroon" side="left" />
+    </div>
+  </section>
+
+  <!-- ELEVPROJEKTER -->
+  <section class="projects section" id="projekter">
+    <div class="container">
+      <div class="projects-head">
+        <div class="stack-small">
+          <h2 class="projects-heading">Lavet i laben</h2>
+          <p class="project-text">Projekter fra studerende, der har brugt studierne og udstyret.</p>
+        </div>
+        <a class="link projects-all" href="/projekter">Se alle projekter →</a>
+      </div>
+      <div class="projects-grid">
+        <ProjectCard title="Kortfilm: “Sidste tog”" text="MMD, 2. semester · optaget i Greenscreen-studiet" image="/images/projekter/sidste-tog.png" />
+        <div class="stack">
+          <ProjectCard title="Podcast-serie: “Ny i byen”" text="Journalistik, 4. semester · Podcast-studiet" image="/images/projekter/ny-i-byen.png" />
+          <ProjectCard title="Musikvideo" text="MMD, 3. semester · Lydstudiet + lån af gimbal" image="/images/projekter/musikvideo.png" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+</Layout>

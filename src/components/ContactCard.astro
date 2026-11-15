@@ -1,0 +1,22 @@
+---
+const { slug, name, role, email, phone, color, side } = Astro.props;
+---
+<div class={`contact-card contact-${color} contact-${side}`}>
+  <img class="contact-photo" src={`/images/team/${slug}.png`} alt={name} />
+
+  <div class="stack-small">
+    <h3 class="contact-name">{name}</h3>
+    <p>{role}</p>
+  </div>
+
+  <div class="contact-links stack-small small">
+    <a href={`mailto:${email}`}>
+      <svg viewBox="0 0 24 24"><path fill="currentColor" d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z" /></svg>
+      {email}
+    </a>
+    <a href={`tel:+45${phone.replaceAll(" ", "")}`}>
+      <svg viewBox="0 0 24 24"><path fill="currentColor" d="M20 15.4c-1.2 0-2.4-.2-3.5-.6-.4-.1-.8 0-1 .3l-1.6 2c-2.8-1.4-5.5-3.9-6.9-6.8l2-1.7c.3-.3.4-.7.2-1-.4-1.1-.6-2.3-.6-3.5 0-.6-.4-1-1-1H4.2C3.6 3 3 3.2 3 4c0 9.3 7.7 17 17 17 .7 0 1-.6 1-1.2v-3.4c0-.6-.4-1-1-1z" /></svg>
+      {phone}
+    </a>
+  </div>
+</div>

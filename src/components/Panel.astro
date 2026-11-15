@@ -1,0 +1,17 @@
+---
+const { id, title, color, illustration } = Astro.props;
+---
+<section class={`panel section container theme-${color}`} id={id}>
+  <div class="panel-head">
+    <h2 class="panel-title">{title}</h2>
+    <img class="panel-illustration" src={illustration} alt="" />
+  </div>
+  <details open>
+    <summary class="panel-bar" aria-label={`Vis/skjul ${title}`}>
+      <span class="panel-toggle"></span>
+    </summary>
+    <div class="panel-body">
+      <slot />
+    </div>
+  </details>
+</section>

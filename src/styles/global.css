@@ -13,8 +13,9 @@
 /* ================= COLOURS + FONTS ================= */
 :root {
   --maroon: #65023b;
-  --pink: #ff95a6;
-  --pink-light: #ffd1d7;
+  --pink-main: #ff95a6;
+  --pink-light-alt: #ffd1d7;
+  --pink: #bd6698;
   --red: #fc012a;
   --orange: #f16705;
   --java: #01c3ba;
@@ -23,8 +24,6 @@
   --sans: "Carlito", Calibri, sans-serif;
 }
 
-/* Section themes: two colours per section.
-   Everything inside a section uses --accent and --tint. */
 .theme-studios {
   --accent: var(--red);
   --tint: #ffecee;
@@ -42,6 +41,7 @@
 * {
   box-sizing: border-box;
 }
+
 body {
   margin: 0;
   font-family: var(--sans);
@@ -177,10 +177,13 @@ h4 {
 .nav-link:hover {
   text-decoration: underline;
 }
+.nav::after {
+  content: "";
+  flex: 1;
+  color: var(--maroon);
+}
 
-/* ================= HERO =================
-   Circle (text) + photo with a thick maroon border.
-   The photo overlaps the circle with a negative margin → reads as one blob. */
+/* ================= HERO =================*/
 .hero {
   display: grid;
   grid-template-columns: 1fr 1.2fr;
@@ -471,7 +474,7 @@ details[open] .panel-toggle::before {
   height: 20px;
 }
 
-/* Mirrored card: same grid, items in reverse order */
+/* Mirrored card: modsat rækkefølge grid */
 .contact-right {
   justify-self: end;
   grid-template-columns: auto 1fr 180px;
@@ -485,10 +488,11 @@ details[open] .panel-toggle::before {
 }
 
 .contact-pink {
-  background: #ffecee;
+  background: #6d003e;
+  color: #fff;
 }
 .contact-mauve {
-  background: #bd6698;
+  background: #6d003e;
   color: #fff;
 }
 .contact-maroon {
@@ -529,7 +533,7 @@ details[open] .panel-toggle::before {
   margin-bottom: 8px;
 }
 .project-text {
-  color: var(--pink-light);
+  color: var(--pink-light-alt);
 }
 
 /* ================= FOOTER ================= */

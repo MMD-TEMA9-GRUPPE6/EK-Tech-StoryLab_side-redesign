@@ -24,6 +24,10 @@ export async function getStaticPaths() {
   });
 }
 
+interface Props {
+  studio: any;
+}
+
 const { studio } = Astro.props;
 
 // Same for all studios: change once here
@@ -208,28 +212,32 @@ const slots = [
 </Layout>
 
 <script>
-  // Mock: updates the summary line. No data is saved.
+  // opdaterer booking summary og aktiverer knap, når både dag og tid er valgt, MEN GEMMER IKKE NOGET DATA <3
   const booking = document.querySelector("#booking");
+  const summary = document.querySelector("[data-summary]");
+  const confirmButton = document.querySelector("[data-confirm]");
 
-  if (booking) {
-    const summary = booking.querySelector("[data-summary]");
-    const confirm = booking.querySelector("[data-confirm]");
+  if (booking && summary && confirmButton) {
+    booking.addEventListener("change", function () {
+      const day = document.querySelector('input[name="day"]:checked');
+      const slot = document.querySelector('input[name="slot"]:checked');
 
-    booking.addEventListener("change", () => {
-      const day = booking.querySelector('input[name="day"]:checked');
-      const slot = booking.querySelector('input[name="slot"]:checked');
-      if (!day || !slot) return;
+      if (day && slot) {
+        const label = day.getAttribute("data-label") || "";
+        const time = slot.getAttribute("value") || "";
+        const parts = time.split("–");
 
-      const label = day.dataset.label;
-      const [from, to] = slot.value.split("–");
-      summary.textContent =
-        label[0].toUpperCase() + label.slice(1) + " · " + from + ":00–" + to + ":00";
-      confirm.disabled = false;
+        summary.textContent =
+          label.charAt(0).toUpperCase() + label.slice(1) +
+          " · " + parts[0] + ":00–" + parts[1] + ":00";
+
+        confirmButton.removeAttribute("disabled");
+      }
     });
 
-    confirm.addEventListener("click", () => {
-      confirm.textContent = "Booking modtaget ✓";
-      confirm.disabled = true;
+    confirmButton.addEventListener("click", function () {
+      confirmButton.textContent = "Booking modtaget ✓";
+      confirmButton.setAttribute("disabled", "");
     });
   }
 </script>

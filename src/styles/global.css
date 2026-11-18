@@ -10,8 +10,8 @@
   font-weight: 600;
 }
 
-/* ================= COLOURS + FONTS ================= */
 :root {
+  /* Farvepalette */
   --maroon: #65023b;
   --pink-main: #ff95a6;
   --pink-light-alt: #ffd1d7;
@@ -20,8 +20,32 @@
   --orange: #f16705;
   --java: #01c3ba;
   --ink: #1a1a1a;
+  --green: #3bb54a;
+  --line: rgb(0 0 0 / 0.12);
+
+  /* Fonts */
   --serif: "Oso Serif", Georgia, serif;
   --sans: "Carlito", Calibri, sans-serif;
+
+  /* Text scale */
+  --text-xs: 12px;
+  --text-s: 14px;
+  --text-m: 16px;
+  --text-l: 20px;
+  --text-xl: 24px;
+  --text-2xl: 32px;
+  --text-3xl: 40px;
+  --text-hero: clamp(52px, 5.5vw, 80px);
+  --text-display: clamp(52px, 8vw, 96px);
+
+  /* border-radius */
+  --radius-s: 12px;
+  --radius-m: 20px;
+  --radius-l: 32px;
+
+  /* Shadow */
+  --shadow-card: 0 5px 15px rgb(0 0 0 / 0.18);
+  --shadow-panel: 0 10px 30px rgb(110 0 61 / 0.12);
 }
 
 .theme-studios {

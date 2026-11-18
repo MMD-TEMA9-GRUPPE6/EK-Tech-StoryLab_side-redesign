@@ -1,0 +1,28 @@
+---
+export async function getStaticPaths() {
+   const url = import.meta.env.PUBLIC_SUPABASE_URL;
+const key = import.meta.env.PUBLIC_SUPABASE_ANON_KEY;
+
+    const tabel = "Events";
+    const options = {
+        headers: {
+            apikey: key
+        }
+    }
+
+    const response = await fetch(url + tabel, options);
+    const events = await response.json();
+
+    return events.map((event) => {
+        return {
+            params: { singlepage: event.slug },
+            props: { event },
+        };
+    });
+}
+
+const { event } = Astro.props;
+---
+
+<h1>{event.name}</h1>
+<img src={event.image}/>

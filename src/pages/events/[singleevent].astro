@@ -1,0 +1,29 @@
+---
+export async function getStaticPaths() {
+   const url = "https://ruljfiukbfuxeertrcfi.supabase.co/rest/v1/";
+const key = "sb_publishable_HX_N1DCL1WJMe9ec4vm0Tw__kt7tRSc";
+
+    const tabel = "Events";
+    const options = {
+        headers: {
+            apikey: key
+        }
+    }
+
+    const response = await fetch(url + tabel, options);
+    const events = await response.json();
+
+    return events.map((event) => {
+        return {
+            params: { singleevent: event.slug },
+            props: { event },
+        };
+    });
+}
+
+const { event } = Astro.props;
+console.log("events", events);
+---
+
+<h1>{event.name}</h1>
+<img src={event.image}/>

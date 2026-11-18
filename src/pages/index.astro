@@ -6,14 +6,18 @@ import EquipmentCard from "../components/EquipmentCard.astro";
 import EventCard from "../components/EventCard.astro";
 import ContactCard from "../components/ContactCard.astro";
 import ProjectCard from "../components/ProjectCard.astro";
-import { supabase } from '../lib/supabase.js';
 
-const { data: studios, error } = await supabase
-  .from('studios')                       // tabelnavn
-  .select('studio, image, slug')         // kun collumns til card
-  .order('id');
+const url = import.meta.env.PUBLIC_SUPABASE_URL;
+const key = import.meta.env.PUBLIC_SUPABASE_ANON_KEY;
 
-if (error) throw new Error(error.message);
+const options = {
+  headers: {
+    apikey: key
+  }
+};
+
+const response = await fetch(url + "studios?select=studio,image,slug&order=id.asc", options);
+const studios = await response.json();
 ---
 
 <Layout title="Forside">

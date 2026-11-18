@@ -1,19 +1,22 @@
 ---
+import Layout from "../../layouts/Layout.astro";
+
+
 export async function getStaticPaths() {
-   const url = "https://ruljfiukbfuxeertrcfi.supabase.co/rest/v1/";
-const key = "sb_publishable_HX_N1DCL1WJMe9ec4vm0Tw__kt7tRSc";
+const url = import.meta.env.PUBLIC_SUPABASE_URL;
+const key = import.meta.env.PUBLIC_SUPABASE_ANON_KEY;
 
-    const tabel = "events";
-    const options = {
-        headers: {
-            apikey: key
-        }
-    }
+  
+   const options = {
+  headers: {
+    apikey: key
+  }
+}
+const tabel = "events";
+const eventsResponse = await fetch(url + tabel, options);
+const events = await eventsResponse.json();
 
-    const response = await fetch(url + tabel, options);
-    const events = await response.json();
-
-    return events.map((event) => {
+    return events.map((event: any) => {
         return {
             params: { singleevent: event.slug },
             props: { event },
@@ -22,8 +25,14 @@ const key = "sb_publishable_HX_N1DCL1WJMe9ec4vm0Tw__kt7tRSc";
 }
 
 const { event } = Astro.props;
-console.log("events", events);
+console.log("event", event);
 ---
 
-<h1>{event.name}</h1>
-<img src={event.image}/>
+
+
+<Layout title={event.name}>
+  <section class="section container">
+    <h1>{event.name}</h1>
+    <img src={event.image} alt={event.name} />
+  </section>
+</Layout>

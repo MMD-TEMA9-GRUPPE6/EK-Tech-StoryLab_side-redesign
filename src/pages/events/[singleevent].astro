@@ -1,7 +1,7 @@
 ---
 export async function getStaticPaths() {
-   const url = import.meta.env.PUBLIC_SUPABASE_URL;
-const key = import.meta.env.PUBLIC_SUPABASE_ANON_KEY;
+   const url = "https://ruljfiukbfuxeertrcfi.supabase.co/rest/v1/";
+const key = "sb_publishable_HX_N1DCL1WJMe9ec4vm0Tw__kt7tRSc";
 
     const tabel = "Events";
     const options = {
@@ -15,13 +15,14 @@ const key = import.meta.env.PUBLIC_SUPABASE_ANON_KEY;
 
     return events.map((event) => {
         return {
-            params: { singlepage: event.slug },
+            params: { singleevent: event.slug },
             props: { event },
         };
     });
 }
 
 const { event } = Astro.props;
+console.log("events", events);
 ---
 
 <h1>{event.name}</h1>

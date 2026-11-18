@@ -6,8 +6,17 @@ import EquipmentCard from "../components/EquipmentCard.astro";
 import EventCard from "../components/EventCard.astro";
 import ContactCard from "../components/ContactCard.astro";
 import ProjectCard from "../components/ProjectCard.astro";
+import { supabase } from '../lib/supabase.js';
+
+const { data: studios, error } = await supabase
+  .from('studios')                       // tabelnavn
+  .select('studio, image, slug')         // kun collumns til card
+  .order('id');
+
+if (error) throw new Error(error.message);
 ---
-<Layout>
+
+<Layout title="Forside">
 
   <!-- HERO -->
   <section class="hero container">
@@ -47,9 +56,9 @@ import ProjectCard from "../components/ProjectCard.astro";
   <!-- STUDIOS -->
   <Panel id="studios" title="Studios" color="studios" illustration="/images/illustrations/studios.svg">
     <div class="studio-grid">
-      <StudioCard title="Podcast" image="/images/studios/podcast.png" link="/studier/podcast" />
-      <StudioCard title="VR" image="/images/placeholder.svg" link="/studier/vr" />
-      <StudioCard title="Eye Tracking" image="/images/placeholder.svg" link="/studier/eye-tracking" />
+      {studios.map((s) => (
+        <StudioCard title={s.studio} image={s.image} href={`/studier/${s.slug}`} />
+      ))}
     </div>
   </Panel>
 

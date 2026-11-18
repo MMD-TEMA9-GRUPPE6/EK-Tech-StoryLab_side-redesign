@@ -18,6 +18,10 @@ const options = {
 
 const response = await fetch(url + "studios?select=studio,image,slug&order=id.asc", options);
 const studios = await response.json();
+const tabel = "events";
+const eventsResponse = await fetch(url + tabel, options);
+const events = await eventsResponse.json();
+
 ---
 
 <Layout title="Forside">
@@ -90,9 +94,13 @@ const studios = await response.json();
   <!-- EVENTS -->
   <Panel id="events" title="Events" color="events" illustration="/images/illustrations/events.svg">
     <div class="stack">
-      <EventCard day="12" month="NOV" title="Workshop: Podcast fra idé til upload" time="14:00–16:00" image="/images/studios/podcast.png" />
+       {events.map((event) => (
+        <EventCard day={event.day} month={event.month} title={event.name} time={event.time} image={event.image} href={`/events/${event.slug}`} />
+      ))}
+
+      <!-- <EventCard day="12" month="NOV" title="Workshop: Podcast fra idé til upload" time="14:00–16:00" image="/images/studios/podcast.png" />
       <EventCard day="19" month="NOV" title="Talk: Storytelling med AR" time="14:00–16:00" image="/images/events/ar.png" />
-      <EventCard day="03" month="DEC" title="Åbent studie: Greenscreen" time="14:00–16:00" image="/images/events/greenscreen.png" />
+      <EventCard day="03" month="DEC" title="Åbent studie: Greenscreen" time="14:00–16:00" image="/images/events/greenscreen.png" /> -->
       <a class="link" href="/events">Se alle events →</a>
     </div>
   </Panel>

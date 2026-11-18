@@ -1,36 +1,27 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import StudioPage from "../pages/StudioPage.astro";
+import Layout from "../../layouts/Layout.astro";
 
 export async function getStaticPaths() {
-  const url = "https://ruljfiukbfuxeertrcfi.supabase.co/rest/v1/";
-  const tabel = "studios";
-  const key = "YOUR_KEY";
+  const url = import.meta.env.PUBLIC_SUPABASE_URL;
+  const key = import.meta.env.PUBLIC_SUPABASE_ANON_KEY;
 
-  const options = {
-    headers: {
-      apikey: key
-    }
-  };
-
-  const response = await fetch(url + tabel, options);
+  const response = await fetch(url + "studios?select=*", {
+    headers: { apikey: key },
+  });
   const studios = await response.json();
 
-  return studios.map((studio: any) => {
-    return {
-      params: { singlepage: studio.slug },
-      props: { studio },
-    };
-  });
-}
-
-interface Props {
-  studio: any;
+  return studios.map((studio: any) => ({
+    params: { slug: studio.slug },
+    props: { studio },
+  }));
 }
 
 const { studio } = Astro.props;
 ---
 
 <Layout title={studio.studio}>
-  <StudioPage studio={studio} />
+  <section class="section container">
+    <h1>{studio.studio}</h1>
+    <img src={studio.image} alt={studio.studio} />
+  </section>
 </Layout>

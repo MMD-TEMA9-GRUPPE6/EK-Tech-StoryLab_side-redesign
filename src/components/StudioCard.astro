@@ -1,14 +1,7 @@
 ---
-const { title, image, link } = Astro.props;
+const { title, image, href } = Astro.props;
 ---
-<a class="studio-card" href={link}>
-  <div class="studio-card-image">
-    <img src={image} alt="" />
-  </div>
-  <div class="studio-card-footer">
-    <p class="studio-card-title">{title}</p>
-    <svg class="studio-card-arrow" viewBox="0 0 48 24">
-      <path d="M1 12h45m0 0-9-9m9 9-9 9" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
-    </svg>
-  </div>
+<a class="studio-card" href={href}>
+  <img src={image} alt={title} width="600" height="400" loading="lazy" />
+  <h3>{title}</h3>
 </a>

@@ -7,8 +7,8 @@ import EventCard from "../components/EventCard.astro";
 import ContactCard from "../components/ContactCard.astro";
 import ProjectCard from "../components/ProjectCard.astro";
 
-const url = "https://ruljfiukbfuxeertrcfi.supabase.co/rest/v1/";
-const key = "sb_publishable_...";   // your key
+const url = import.meta.env.PUBLIC_SUPABASE_URL;
+const key = import.meta.env.PUBLIC_SUPABASE_ANON_KEY;
 
 const options = {
   headers: {
@@ -16,10 +16,8 @@ const options = {
   }
 };
 
-const response = await fetch(url + "studios", options);
+const response = await fetch(url + "studios?select=studio,image,slug&order=id.asc", options);
 const studios = await response.json();
-
-console.log("studios", studios);
 ---
 
 <Layout title="Forside">

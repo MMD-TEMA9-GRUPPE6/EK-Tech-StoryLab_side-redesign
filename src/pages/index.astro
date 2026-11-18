@@ -61,7 +61,7 @@ const studios = await response.json();
   <Panel id="studios" title="Studios" color="studios" illustration="/images/illustrations/studios.svg">
     <div class="studio-grid">
       {studios.map((studio) => (
-        <StudioCard title={studio.studio} image={studio.image} href={`/studier/${studio.slug}`} />
+        <StudioCard title={studio.studio} image={studio.image} href={`/studios/${studio.slug}`} />
       ))}
     </div>
   </Panel>

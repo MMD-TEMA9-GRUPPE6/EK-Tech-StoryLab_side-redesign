@@ -117,7 +117,8 @@ const slots = [
         </div>
       </div>
 
-      <div class="studio-media">
+      <div class="studio-media has-blob">
+        <img class="blob" src="/images/blobs/blob-studio.png" alt="" width="676" height="867" />
         <a class="back-btn" href="/#studios" aria-label="Tilbage til studier">
           <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true">
             <path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d="M19 12H5m6-6-6 6 6 6" />
@@ -297,9 +298,10 @@ const slots = [
   .studio-media {
     grid-column: 1;
     grid-row: 1;
-    position: relative;
-    padding: 160px 0 0 120px;
-    background: url("/images/studios/blob-studios.png") no-repeat left top / contain;
+    padding: 180px 0 0 45px;
+    min-height: 843px;
+    --blob-top: -24px;
+    --blob-left: -95px;
   }
   .studio-info {
     grid-column: 2;
@@ -312,8 +314,8 @@ const slots = [
 
   .back-btn {
     position: absolute;
-    top: 24px;
-    left: 0;
+    top: 0;
+    left: -68px;
     display: grid;
     place-items: center;
     width: 72px;
@@ -595,10 +597,22 @@ const slots = [
     .studio-info,
     .studio-media {
       grid-column: 1;
-      grid-row: auto;
     }
     .studio-media {
-      padding: 80px 0 0 32px;
+      grid-row: 1;
+      padding: 90px 0 0 80px;
+      min-height: 116vw;
+      --blob-top: 0px;
+      --blob-left: 0px;
+      --blob-width: 90vw;
+    }
+    .studio-info {
+      grid-row: 2;
+      position: relative;
+      z-index: 1;
+    }
+    .back-btn {
+      left: 0;
     }
 
     .studio-sheet,

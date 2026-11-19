@@ -12,8 +12,8 @@ const key = import.meta.env.PUBLIC_SUPABASE_ANON_KEY;
 
 const options = {
   headers: {
-    apikey: key
-  }
+    apikey: key,
+  },
 };
 
 const response = await fetch(url + "studios?select=studio,image,slug&order=id.asc", options);
@@ -21,19 +21,28 @@ const studios = await response.json();
 const tabel = "events";
 const eventsResponse = await fetch(url + tabel, options);
 const events = await eventsResponse.json();
-
+const gearTabel = "gear";
+const gearResponse = await fetch(url + gearTabel, options);
+const gear = await gearResponse.json();
 ---
 
 <Layout title="Forside">
-
   <!-- HERO -->
   <section class="hero container">
     <div class="hero-blob">
-      <h1 class="hero-title">Tech &amp;<br />Story Lab</h1>
+      <h1 class="hero-title">
+        Tech &amp;
+        <br />
+        Story Lab
+      </h1>
       <p class="hero-text">Tech &amp; Story Lab er et lab med fokus på ny teknologi for EK's studerende, undervisere og øvrige ansatte.</p>
       <div class="button-row">
-        <a class="btn btn-pink" href="#studios">Book et studie</a>
-        <a class="link" href="#udstyr">Se udstyr →</a>
+        <a class="btn btn-pink" href="#studios">
+          Book et studie
+        </a>
+        <a class="link" href="#udstyr">
+          Se udstyr →
+        </a>
       </div>
     </div>
     <img class="hero-photo" src="/images/hero/hero-photo.png" alt="Studerende fotograferer i studiet" />
@@ -78,15 +87,23 @@ const events = await eventsResponse.json();
         <h3 class="equipment-heading">Lån det, du skal bruge. Aflever det, når du er færdig.</h3>
         <p class="small">Book online og hent i laben. Ved du ikke hvad du skal bruge, så kom forbi og spørg.</p>
         <div class="button-row">
-          <a class="btn btn-outline btn-small" href="/udstyr">Se alt udstyr</a>
-          <a class="btn btn-maroon btn-small" href="/udstyr">Book udstyr</a>
+          <a class="btn btn-outline btn-small" href="/udstyr">
+            Se alt udstyr
+          </a>
+          <a class="btn btn-maroon btn-small" href="/udstyr">
+            Book udstyr
+          </a>
         </div>
       </div>
       <div class="equipment-shelf">
+        {gear.map((gear) => (
+          <EquipmentCard name={gear.gearname} image={gear.images} href={`/gear/${gear.slug}`} available={gear.available} />
+        ))}
+        <!-- 
         <EquipmentCard name="Filmkamera" image="/images/udstyr/filmkamera.png" available={3} />
         <EquipmentCard name="Mikrofon-kit" image="/images/udstyr/mikrofon.png" available={5} />
         <EquipmentCard name="Lyspakke" image="/images/udstyr/lyspakke.png" available={0} />
-        <EquipmentCard name="Gimbal" image="/images/udstyr/gimbal.png" available={2} />
+        <EquipmentCard name="Gimbal" image="/images/udstyr/gimbal.png" available={2} /> -->
       </div>
     </div>
   </Panel>
@@ -94,14 +111,16 @@ const events = await eventsResponse.json();
   <!-- EVENTS -->
   <Panel id="events" title="Events" color="events" illustration="/images/illustrations/events.svg">
     <div class="stack">
-       {events.map((event) => (
+      {events.map((event) => (
         <EventCard day={event.day} month={event.month} title={event.name} time={event.time} image={event.image} href={`/events/${event.slug}`} />
       ))}
 
       <!-- <EventCard day="12" month="NOV" title="Workshop: Podcast fra idé til upload" time="14:00–16:00" image="/images/studios/podcast.png" />
       <EventCard day="19" month="NOV" title="Talk: Storytelling med AR" time="14:00–16:00" image="/images/events/ar.png" />
       <EventCard day="03" month="DEC" title="Åbent studie: Greenscreen" time="14:00–16:00" image="/images/events/greenscreen.png" /> -->
-      <a class="link" href="/events">Se alle events →</a>
+      <a class="link" href="/events">
+        Se alle events →
+      </a>
     </div>
   </Panel>
 
@@ -123,7 +142,9 @@ const events = await eventsResponse.json();
           <h2 class="projects-heading">Lavet i laben</h2>
           <p class="project-text">Projekter fra studerende, der har brugt studierne og udstyret.</p>
         </div>
-        <a class="link projects-all" href="/projekter">Se alle projekter →</a>
+        <a class="link projects-all" href="/projekter">
+          Se alle projekter →
+        </a>
       </div>
       <div class="projects-grid">
         <ProjectCard title="Kortfilm: “Sidste tog”" text="MMD, 2. semester · optaget i Greenscreen-studiet" image="/images/projekter/sidste-tog.png" />
@@ -134,11 +155,10 @@ const events = await eventsResponse.json();
       </div>
     </div>
   </section>
-
 </Layout>
 <style>
   :global(body) {
-    background: linear-gradient(to bottom,  #fff, #ffdda7, #fff);
+    background: linear-gradient(to bottom, #fff, #ffdda7, #fff);
     min-height: 100vh;
     margin: 0;
   }

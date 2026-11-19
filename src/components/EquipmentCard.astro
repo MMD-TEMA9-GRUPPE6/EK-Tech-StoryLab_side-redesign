@@ -1,8 +1,12 @@
 ---
-const { name, image, available } = Astro.props;
+const { name, image, available, href } = Astro.props;
 ---
+
 <div class="equipment-card stack-small">
-  <img src={image} alt={name} />
+  <a href={href}>
+    <!-- {" "} -->
+    <img src={image} alt={name} />
+  </a>
   <h4>{name}</h4>
   <p class="status">
     <span class={available > 0 ? "status-dot" : "status-dot status-dot-empty"}></span>

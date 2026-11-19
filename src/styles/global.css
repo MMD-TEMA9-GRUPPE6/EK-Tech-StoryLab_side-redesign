@@ -240,7 +240,7 @@ h4 {
 }
 .hero-mascot {
   width: 45%;
-  margin: -22% 0 0 8%;
+  margin: -2% 0 0 8%;
 }
 
 /* ================= QUICK LINKS ================= */
@@ -365,6 +365,7 @@ details[open] .panel-toggle::before {
 }
 .studio-card-image img {
   width: 100%;
+  height: auto;
   aspect-ratio: 16 / 9;
   object-fit: cover;
   border-radius: 36px;

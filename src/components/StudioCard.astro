@@ -2,6 +2,10 @@
 const { title, image, href } = Astro.props;
 ---
 <a class="studio-card" href={href}>
-  <img src={image} alt={title} width="600" height="400" loading="lazy" />
-  <h3>{title}</h3>
+  <div class="studio-card-image">
+    <img src={image} alt="" width="600" height="400" loading="lazy" />
+  </div>
+  <div class="studio-card-footer">
+    <h3 class="studio-card-title">{title}</h3>
+  </div>
 </a>

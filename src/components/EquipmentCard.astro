@@ -2,14 +2,11 @@
 const { name, image, available, href } = Astro.props;
 ---
 
-<div class="equipment-card stack-small">
-  <a href={href}>
-    <!-- {" "} -->
-    <img src={image} alt={name} />
-  </a>
+<a class="equipment-card stack-small" href={href}>
+  <img src={image} alt="" />
   <h4>{name}</h4>
   <p class="status">
-    <span class={available > 0 ? "status-dot" : "status-dot status-dot-empty"}></span>
-    {available > 0 ? `${available} ledige` : "Alle udlånt"}
+    <span class:list={["status-dot", { "status-dot-empty": !available }]}></span>
+    {available ? "Ledig" : "Alle udlånt"}
   </p>
-</div>
+</a>

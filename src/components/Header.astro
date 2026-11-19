@@ -2,11 +2,41 @@
   <a href="/">
     <img class="header-logo" src="/images/logo.svg" alt="Tech & Story Lab – forside" />
   </a>
-  <nav class="nav">
-    <a class="nav-link" href="#studios">Studier</a>
-    <a class="nav-link" href="#udstyr">Udstyr</a>
-    <a class="nav-link" href="#events">Events</a>
-    <a class="nav-link" href="#projekter">Elevprojekter</a>
-    <a class="btn btn-maroon" href="#studios">Book</a>
+
+  <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="Åbn menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+  <nav class="nav" id="main-nav">
+    <a class="nav-link" href="/#studios">Studier</a>
+    <a class="nav-link" href="/#udstyr">Udstyr</a>
+    <a class="nav-link" href="/#events">Events</a>
+    <a class="nav-link" href="/#projekter">Elevprojekter</a>
+    <a class="btn btn-maroon" href="/#studios">Book</a>
   </nav>
 </header>
+
+<script>
+  // Burgermenu: åbner/lukker navigationen på mobil
+  const menuButton = document.querySelector(".menu-toggle");
+  const nav = document.querySelector("#main-nav");
+
+  if (menuButton && nav) {
+    menuButton.addEventListener("click", function () {
+      const isOpen = nav.classList.toggle("is-open");
+      menuButton.setAttribute("aria-expanded", String(isOpen));
+      menuButton.setAttribute("aria-label", isOpen ? "Luk menu" : "Åbn menu");
+    });
+
+    // Luk menuen når man klikker på et link
+    nav.querySelectorAll("a").forEach(function (link) {
+      link.addEventListener("click", function () {
+        nav.classList.remove("is-open");
+        menuButton.setAttribute("aria-expanded", "false");
+        menuButton.setAttribute("aria-label", "Åbn menu");
+      });
+    });
+  }
+</script>

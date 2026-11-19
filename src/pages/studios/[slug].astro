@@ -83,10 +83,9 @@ const slots = [
 
 <Layout title={studio.studio}>
   <article class="studio theme-studios">
-
     <!-- HERO -->
     <section class="studio-hero container">
-      <div class="studio-info">
+      <div class="studio-info cardcontainer">
         <h1 class="studio-title">{studio.studio}</h1>
 
         <p class="studio-status">
@@ -112,35 +111,35 @@ const slots = [
         </dl>
 
         <div class="button-row">
-          <a class="btn btn-accent" href="#booking">Book studiet</a>
+          <a class="btn btn-accent" href="#booking">
+            Book studiet
+          </a>
         </div>
       </div>
 
       <div class="studio-media">
         <a class="back-btn" href="/#studios" aria-label="Tilbage til studier">
           <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true">
-            <path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-              stroke-linejoin="round" d="M19 12H5m6-6-6 6 6 6" />
+            <path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d="M19 12H5m6-6-6 6 6 6" />
           </svg>
         </a>
-        <img class="studio-photo" src={studio.image} alt={`${studio.studio}-studiet`}
-          width="600" height="400" />
+        <img class="studio-photo" src={studio.image} alt={`${studio.studio}-studiet`} width="600" height="400" />
       </div>
     </section>
 
     <!-- SHEET -->
     <div class="studio-sheet container">
-
       <!-- BOOKING (mock) -->
       <section class="booking" id="booking" aria-labelledby="booking-title">
-        <h2 class="booking-title" id="booking-title">Vælg tid</h2>
+        <h2 class="booking-title" id="booking-title">
+          Vælg tid
+        </h2>
 
         <fieldset class="days">
           <legend class="sr-only">Vælg dag</legend>
           {days.map((day) => (
             <label class="day">
-              <input type="radio" name="day" value={day.value}
-                data-label={day.label} disabled={day.full} />
+              <input type="radio" name="day" value={day.value} data-label={day.label} disabled={day.full} />
               <span class="day-box">
                 <span class="day-name">{day.weekday}</span>
                 <span class="day-date">{day.date}</span>
@@ -167,10 +166,16 @@ const slots = [
 
         <div class="booking-summary">
           <div>
-            <p class="booking-choice" data-summary>Vælg dag og tid</p>
-            <p class="small muted">{studio.studio}-studie · max {shared.maxHours} timer pr. booking</p>
+            <p class="booking-choice" data-summary>
+              Vælg dag og tid
+            </p>
+            <p class="small muted">
+              {studio.studio}-studie · max {shared.maxHours} timer pr. booking
+            </p>
           </div>
-          <button class="btn btn-accent" type="button" data-confirm disabled>Bekræft booking</button>
+          <button class="btn btn-accent" type="button" data-confirm disabled>
+            Bekræft booking
+          </button>
         </div>
       </section>
 
@@ -179,7 +184,9 @@ const slots = [
         <section>
           <h2 class="studio-h2">Udstyr i studiet</h2>
           <ul class="udstyr-list">
-            {udstyr.map((item) => <li>{item}</li>)}
+            {udstyr.map((item) => (
+              <li>{item}</li>
+            ))}
           </ul>
         </section>
 
@@ -192,7 +199,9 @@ const slots = [
             </div>
             <div>
               <dt>Regler</dt>
-              <dd>{shared.rules} · max {shared.maxHours} timer pr. booking</dd>
+              <dd>
+                {shared.rules} · max {shared.maxHours} timer pr. booking
+              </dd>
             </div>
           </dl>
 
@@ -227,9 +236,7 @@ const slots = [
         const time = slot.getAttribute("value") || "";
         const parts = time.split("–");
 
-        summary.textContent =
-          label.charAt(0).toUpperCase() + label.slice(1) +
-          " · " + parts[0] + ":00–" + parts[1] + ":00";
+        summary.textContent = label.charAt(0).toUpperCase() + label.slice(1) + " · " + parts[0] + ":00–" + parts[1] + ":00";
 
         confirmButton.removeAttribute("disabled");
       }
@@ -271,6 +278,14 @@ const slots = [
   }
 
   /* ========== HERO ========== */
+  .cardcontainer {
+    background-color: #fff;
+    padding: 2rem;
+    filter: drop-shadow(5px 5px 5px rgb(141, 138, 138));
+    border-radius: 8%;
+    border-left: 10px solid var(--red);
+  }
+
   .studio-hero {
     display: grid;
     grid-template-columns: 1.1fr 1fr;

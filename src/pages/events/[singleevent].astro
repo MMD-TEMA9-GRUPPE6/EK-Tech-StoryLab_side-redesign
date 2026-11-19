@@ -34,7 +34,7 @@ console.log("event", event);
   <article class="studio theme-studios">
     <!-- HERO -->
     <section class="studio-hero container">
-      <div class="studio-info">
+      <div class="studio-info cardcontainer">
         <h1 class="studio-title">{event.name}</h1>
 
         <p class="studio-description">{event.description}</p>
@@ -82,6 +82,14 @@ console.log("event", event);
   button.btn:disabled {
     opacity: 0.4;
     cursor: not-allowed;
+  }
+
+  .cardcontainer {
+    background-color: #fff;
+    padding: 2rem;
+    filter: drop-shadow(5px 5px 5px rgb(141, 138, 138));
+    border-radius: 8%;
+    border-left: 10px solid var(--java);
   }
 
   /* ========== HERO ========== */
